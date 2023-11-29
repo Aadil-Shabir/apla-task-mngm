@@ -3,9 +3,9 @@ const { getTask, saveTask, updateTask, deleteTask } = require("../controllers/Ta
 
 const router = Router();
 
-router.get("/", getTask);
-router.post("/save", saveTask);
-router.put("/update", updateTask);
-router.delete("/delete", deleteTask);
+router.get("/api/", getTask);
+router.post("/api/save", saveTask);
+router.put("/api/update", updateTask);
+router.delete("/api/delete", deleteTask);
 
 module.exports = router;
