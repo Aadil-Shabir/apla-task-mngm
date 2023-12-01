@@ -62,7 +62,7 @@ module.exports.deleteTask = async (req, res) => {
     TaskModel.findByIdAndDelete(_id)
         .then((result) => {
             if (result) {
-                res.json({ message: "Deleted Successfully!" });
+                res.json(result);
             } else {
                 res.status(404).json({ error: "Task not found" });
             }
