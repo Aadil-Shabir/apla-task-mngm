@@ -46,13 +46,13 @@ module.exports.updateTask = async (req, res) => {
         );
 
         if (updatedTask) {
-            res.send("Updated Successfully!");
+            res.json({ message: "Updated Successfully!" });
         } else {
-            res.status(404).send("Task not found");
+            res.status(404).json({ error: "Task not found" });
         }
     } catch (error) {
         console.error(error);
-        res.status(500).send("Internal Server Error");
+        res.status(500).json({ error: "Internal Server Error" });
     }
 };
 
