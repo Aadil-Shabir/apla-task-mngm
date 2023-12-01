@@ -62,13 +62,13 @@ module.exports.deleteTask = async (req, res) => {
     TaskModel.findByIdAndDelete(_id)
         .then((result) => {
             if (result) {
-                res.send("Deleted Successfully!");
+                res.json({ message: "Deleted Successfully!" });
             } else {
-                res.status(404).send("Task not found");
+                res.status(404).json({ error: "Task not found" });
             }
         })
         .catch((err) => {
             console.log(err);
-            res.status(500).send("Internal Server Error");
+            res.status(500).json({ error: "Internal Server Error" });
         });
 };
