@@ -46,7 +46,7 @@ module.exports.updateTask = async (req, res) => {
         );
 
         if (updatedTask) {
-            res.json({ message: "Updated Successfully!" });
+            res.json(updatedTask);
         } else {
             res.status(404).json({ error: "Task not found" });
         }
