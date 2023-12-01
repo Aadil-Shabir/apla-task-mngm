@@ -7,9 +7,9 @@ module.exports.getTask = async (req, res) => {
 
 module.exports.saveTask = async (req, res) => {
     try {
-        const { title, description } = req.body;
+        const { title, deadline } = req.body;
 
-        const newTask = await TaskModel.create({ title, description });
+        const newTask = await TaskModel.create({ title, deadline });
 
         console.log("Added Successfully");
         console.log(newTask);
@@ -27,27 +27,19 @@ module.exports.saveTask = async (req, res) => {
 };
 
 module.exports.updateTask = async (req, res) => {
-    const { _id, title, description } = req.body;
+    const { _id, title, deadline, completed } = req.body;
 
     try {
         const currentDate = new Date();
-        const formattedDate = `${currentDate.getFullYear()}-${(currentDate.getMonth() + 1)
-            .toString()
-            .padStart(2, "0")}-${currentDate.getDate().toString().padStart(2, "0")} ${currentDate
-            .getHours()
-            .toString()
-            .padStart(2, "0")}:${currentDate.getMinutes().toString().padStart(2, "0")}:${currentDate
-            .getSeconds()
-            .toString()
-            .padStart(2, "0")}`;
 
         const updatedTask = await TaskModel.findByIdAndUpdate(
             _id,
             {
                 $set: {
                     title,
-                    description,
-                    date: formattedDate,
+                    deadline,
+                    date: currentDate,
+                    completed,
                 },
             },
             { new: true }
