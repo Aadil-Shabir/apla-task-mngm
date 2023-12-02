@@ -7,9 +7,9 @@ module.exports.getTask = async (req, res) => {
 
 module.exports.saveTask = async (req, res) => {
     try {
-        const { title, deadline } = req.body;
+        const { title, deadline, recurrence } = req.body;
 
-        const newTask = await TaskModel.create({ title, deadline });
+        const newTask = await TaskModel.create({ title, deadline, recurrence });
 
         console.log("Added Successfully");
         console.log(newTask);
@@ -27,7 +27,7 @@ module.exports.saveTask = async (req, res) => {
 };
 
 module.exports.updateTask = async (req, res) => {
-    const { _id, title, deadline, completed } = req.body;
+    const { _id, title, deadline, completed, recurrence } = req.body;
 
     try {
         const currentDate = new Date();
@@ -40,6 +40,7 @@ module.exports.updateTask = async (req, res) => {
                     deadline,
                     date: currentDate,
                     completed,
+                    recurrence,
                 },
             },
             { new: true }

@@ -13,6 +13,19 @@ const taskSchema = new mongoose.Schema({
         type: Boolean,
         default: false,
     },
+    recurrence: {
+        type: {
+            frequency: {
+                type: String,
+                enum: ["do not repeat", "daily", "weekly", "monthly", "yearly"],
+                default: "do not repeat",
+            },
+            interval: {
+                type: Number,
+                default: 1,
+            },
+        },
+    },
     date: {
         type: Date,
         default: function () {
